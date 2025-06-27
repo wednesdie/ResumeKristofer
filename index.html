@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Kristofer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+ <link href="https://example.com/path-to-cosmic-font.css" rel="stylesheet">
+ <link rel="stylesheet" href="css/style.css"/>
+</head>
+
+<body class="dark-mode">
+
+   <div class="theme-switch-wrapper">
+    <label class="switch">
+  <input type="checkbox" id="toggle-theme" />
+  <span class="slider-text">
+    <span class="label-text">🌙</span>
+    <span class="label-text">☀️</span>
+    <span class="circle"></span>
+  </span>
+    </label>
+  </div>
+
+  <div class="container">
+        <div class="left-column">
+            <div class="header">
+              <div class="header-top">
+              <svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">
+              <g stroke="#006666" fill="none" stroke-width="2">
+                <path d="M 0 300 Q 50 200, 100 250 Q 200 300, 400 160" />
+                <path d="M 0 280 Q 50 190, 100 240 Q 190 290, 400 155" />
+                <path d="M 0 260 Q 50 180, 100 230 Q 190 280, 400 150" />
+                <path d="M 0 240 Q 50 170, 100 220 Q 180 270, 400 145" />
+                <path d="M 0 220 Q 50 160, 100 210 Q 170 260, 400 140" />
+                <path d="M 0 200 Q 50 150, 100 200 Q 160 250, 400 135" />
+              </g>
+            </svg>
+
+              <img src="img\WhatsApp Image 2025-06-06 at 22.02.41.jpg" alt="Profile Picture" class="profile-image" />
+              </div>
+              <h2> Kristofer Sihombing </h2>
+                <p>  Backend Developer | .NET Developer</p>               
+            </div>             
+        <div class="sidebar">
+            <nav class="menu">
+            <ul>
+                <li><a href="#personaldata" >About</a></li>
+                <li><a href="#skill">Skills Stacking</a></li>
+                <li><a href="#workexp">Work Experience</a></li>
+                <li><a href="#portofolio">Projects</a></li>
+                
+            </ul>
+            </nav>
+            <div class="social-icons">
+                <br> 
+            <a href="https://github.com/redsbike"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/kristofer-sihombing/"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://wa.me/6281293766826"target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </br>
+            </div>
+        </div>
+        </div>
+
+       
+        <div class="right-column">
+          <span class="line-bottom"></span>
+
+            <div class="section" id = "personaldata">       
+            <p id="personal-text">              
+            </p>
+            </div>
+                                    
+            <div class="section" id = "skill">
+            <b> Skills Stacking</b> 
+            <p id="skill-text"></p>
+            </div>               
+            
+            <div class="section" id = "workexp">
+            <b> Work Experience</b> 
+            <p id="workexp-text"></p>
+            </div>   
+            
+            <div class="section-porto" id="portofolio">
+            <b>Portofolio Projects</b> 
+            <!-- show popoup -->
+             <label for="popup-toggle" class="open-btn">View full projects →</label>
+                <input type="checkbox" id="popup-toggle" hidden />
+              <div class="popup-overlay">
+                <div class="popup-content">
+                    <label for="popup-toggle" class="close-btn"><i class="fas fa-times"></i></label>
+                  <p id="portofolio-text"></p>
+                </div>
+              </div>            
+            </div>     
+
+        </div>
+    </div>
+
+   <script>
+  const toggle = document.getElementById("toggle-theme");
+
+  toggle.addEventListener("change", function () {    
+    if (this.checked) {
+      document.body.classList.remove("dark-mode"); 
+    } else {      
+      document.body.classList.add("dark-mode"); 
+    }
+  });
+</script>
+
+
+    <script>
+        // Fungsi untuk mengirimkan hit ke server Go
+        async function recordPageHit() {
+            const apiUrl = 'http://localhost:8080/api/users'; // URL API Go kamu
+
+            try {
+                // Menggunakan metode POST, karena mencatat hit adalah operasi "create" data
+                // Jika Go handler kamu disiapkan untuk GET, ubah method menjadi 'GET'
+                const response = await fetch(apiUrl, {
+                    method: 'GET', // Atau 'POST' jika kamu mengubah handler Go menjadi menerima POST
+                    headers: {
+                        'Content-Type': 'application/json'
+                        // Tambahkan header lain jika diperlukan oleh API Go kamu
+                    }
+                    // body: JSON.stringify({ /* data yang mungkin perlu dikirim jika method POST */ })
+                });
+
+                if (response.ok) { // Cek apakah respons sukses (status 200-299)
+                    const data = await response.json(); // Jika API mengembalikan JSON
+                    console.log('Hit berhasil dicatat:', data);
+                } else {
+                    const errorText = await response.text(); // Ambil teks error jika ada
+                    console.error('Gagal mencatat hit:', response.status, errorText);
+                }
+            } catch (error) {
+                console.error('Terjadi kesalahan jaringan atau lainnya:', error);
+            }
+        }
+
+        // Panggil fungsi recordPageHit ketika DOM sudah dimuat
+        document.addEventListener('DOMContentLoaded', recordPageHit);
+
+        // Atau, jika kamu ingin mencatat hit saat setiap kali window di-load (termasuk refresh)
+        // window.onload = recordPageHit;
+    </script>
+
+    <script src="js/personaldata.js"></script>
+    <script src="js/skill.js"></script>
+    <script src="js/portofolio.js"></script>
+    <script src="js/workexp.js"></script>
+
+</body>
+</html>
